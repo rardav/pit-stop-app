@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PitStop.DataAccess.Context;
 
@@ -11,9 +12,11 @@ using PitStop.DataAccess.Context;
 namespace PitStop.DataAccess.Migrations
 {
     [DbContext(typeof(PitStopContext))]
-    partial class PitStopContextModelSnapshot : ModelSnapshot
+    [Migration("20230109220056_vehicleTypes")]
+    partial class vehicleTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,10 +135,6 @@ namespace PitStop.DataAccess.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Manufacturer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -156,40 +155,6 @@ namespace PitStop.DataAccess.Migrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("Vehicles");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Vehicle");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("PitStop.DataAccess.Entities.Bus", b =>
-                {
-                    b.HasBaseType("PitStop.DataAccess.Entities.Vehicle");
-
-                    b.Property<int>("NoOfSeats")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Bus");
-                });
-
-            modelBuilder.Entity("PitStop.DataAccess.Entities.Car", b =>
-                {
-                    b.HasBaseType("PitStop.DataAccess.Entities.Vehicle");
-
-                    b.Property<bool>("AutomaticGearbox")
-                        .HasColumnType("bit");
-
-                    b.HasDiscriminator().HasValue("Car");
-                });
-
-            modelBuilder.Entity("PitStop.DataAccess.Entities.Truck", b =>
-                {
-                    b.HasBaseType("PitStop.DataAccess.Entities.Vehicle");
-
-                    b.Property<float>("Weight")
-                        .HasColumnType("real");
-
-                    b.HasDiscriminator().HasValue("Truck");
                 });
 
             modelBuilder.Entity("PitStop.DataAccess.Entities.Fix", b =>

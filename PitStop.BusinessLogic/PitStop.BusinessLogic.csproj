@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PitStop.DataAccess\PitStop.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DesignPatterns\Decorator\" />
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>

@@ -2,7 +2,7 @@
 
 namespace PitStop.DataAccess.Entities
 {
-    public class Vehicle
+    public abstract class Vehicle
     {
         [Key]
         public int Id { get; set; }
