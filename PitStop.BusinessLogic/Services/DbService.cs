@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PitStop.BusinessLogic.Contracts;
 using PitStop.DataAccess.Context;
 using PitStop.DataAccess.Entities;
 
-namespace PitStop.BusinessLogic.Logic
+namespace PitStop.BusinessLogic.Services
 {
-    public class DbService
+    public class DbService : IDbService
     {
         private readonly PitStopContext _context;
 
@@ -19,6 +20,7 @@ namespace PitStop.BusinessLogic.Logic
                 .Include(fix => fix.Employee)
                 .Include(fix => fix.Vehicle)
                 .ThenInclude(vehicle => vehicle.Client)
+                .AsEnumerable()
                 .Reverse()
                 .Take(10)
                 .Reverse()
