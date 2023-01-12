@@ -6,9 +6,6 @@ namespace PitStop.DataAccess.Context
     public class PitStopContext : DbContext
     {
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<Truck> Trucks { get; set; }
-        public DbSet<Bus> Buses { get; set; }
-        public DbSet<Car> Cars { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Fix> Fixes { get; set; }
         public DbSet<Employee> Employees { get; set; }

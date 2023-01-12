@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PitStop.BusinessLogic\PitStop.BusinessLogic.csproj" />
     <ProjectReference Include="..\PitStop.DataAccess\PitStop.DataAccess.csproj" />
   </ItemGroup>
 

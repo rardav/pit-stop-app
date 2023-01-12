@@ -1,7 +1,7 @@
-﻿using PitStop.DataAccess.Context;
+﻿using PitStop.BusinessLogic.DesignPatterns.Singleton;
+
+var menu = MainMenu.Instance;
+menu.StartApp();
 
 
-using var context = new PitStopContext();
-
-context.Database.EnsureCreated();
 
