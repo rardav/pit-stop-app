@@ -25,6 +25,5 @@ namespace PitStop.DataAccess.Entities
 
         public Client Client { get; set; }
         public ICollection<Fix> Fixes { get; set; }
-
     }
 }

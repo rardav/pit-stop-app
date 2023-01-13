@@ -1,6 +1,8 @@
 ﻿using PitStop.BusinessLogic.Contracts;
 using PitStop.BusinessLogic.DesignPatterns.AbstractFactory;
 using PitStop.BusinessLogic.DesignPatterns.Builder;
+using PitStop.BusinessLogic.DesignPatterns.Memento;
+using PitStop.BusinessLogic.Extensions;
 using PitStop.DataAccess.Entities;
 
 namespace PitStop.BusinessLogic.Services
@@ -60,19 +62,50 @@ namespace PitStop.BusinessLogic.Services
 
             vehicle.ClientId = client.Id;
 
-            Console.Clear();
-            Console.WriteLine("Add vehicle data:");
+            currentAnswer = "0";
+            menuValues = new string[] { "1", "2" };
 
-            Console.Write("Manufacturer: ");
-            vehicle.Manufacturer = Console.ReadLine();
+            while (!currentAnswer.Equals("1"))
+            { 
+                var memory = new VehicleMemory();
+                memory.Memento = vehicle.SaveMemento();
 
-            Console.Write("Model: ");
-            vehicle.Model = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("Add vehicle data:");
 
-            Console.Write("Plate number: ");
-            vehicle.PlateNumber = Console.ReadLine();
+                Console.Write("Manufacturer: ");
+                vehicle.Manufacturer = Console.ReadLine();
 
-            vehicle.Year = random.Next(2000, 2023);
+                Console.Write("Model: ");
+                vehicle.Model = Console.ReadLine();
+
+                Console.Write("Plate number: ");
+                vehicle.PlateNumber = Console.ReadLine();
+
+                vehicle.Year = random.Next(2000, 2023);
+
+
+                while (!menuValues.Contains(currentAnswer))
+                {
+                    Console.WriteLine("Please verify your answers:\n\n1. Continue\n2. Undo\n");
+
+                    Console.Write("Your answer: ");
+                    currentAnswer = Console.ReadLine();
+
+                    switch (currentAnswer)
+                    {
+                        case "1":
+                            break;
+                        case "2":
+                            vehicle.RestoreMemento(memory.Memento);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                if(currentAnswer.Equals("2")) currentAnswer = "0";
+            }
 
             return vehicle;
         }

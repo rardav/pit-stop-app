@@ -1,6 +1,6 @@
 ﻿namespace PitStop.BusinessLogic.DesignPatterns.Memento
 {
-    public class FixMemory
+    public class VehicleMemory
     {
         public Memento Memento { get; set; }
     }

@@ -2,15 +2,17 @@
 {
     public class Memento
     {
-        public string FixedPart { get; set; }
-        public DateTime DateOfFixing { get; set; }
-        public decimal Price { get; set; }
+        public string Manufacturer { get; set; }
+        public string Model { get; set; }
+        public string PlateNumber { get; set; }
+        public int Year { get; set; }
 
-        public Memento(string fixedPart, DateTime dateOfFixing, decimal price)
+        public Memento(string manufacturer, string model, string plateNumber, int year)
         {
-            FixedPart = fixedPart;
-            DateOfFixing = dateOfFixing;
-            Price = price;
+            Manufacturer = manufacturer;
+            Model = model;
+            PlateNumber = plateNumber;
+            Year = year;
         }
     }
 }
